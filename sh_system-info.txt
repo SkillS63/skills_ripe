@@ -1,0 +1,4 @@
+<SR_SCRIPT>
+<RUN>
+enable
+sh system-inf

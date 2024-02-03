@@ -1,0 +1,29 @@
+<SR_SCRIPT>
+<SHOW_MENU>
+<L1>Lag1x
+<L2>Ext_VLan
+<L3>port_vlan
+<L4>IP_приемника
+<L5>МКУ***/Адрес
+<RUN>
+configure service vprn 100 subscriber-interface "KTV-OPTICAL-RECEIVERS" group-interface "KTV-OPTICAL-RECEIVERS-LAG-<L1>"
+sap lag-<L1>:<L2>.<L3> create
+description "SAP FOR KTV-OPTICAL-RECEIVERS"
+anti-spoof nh-mac
+sub-sla-mgmt
+def-sub-id use-sap-id
+def-sub-profile "SP-KTV-OPTICAL-RECEIVERS"
+def-sla-profile "SLA-KTV-OPTICAL-RECEIVERS"
+sub-ident-policy "MAIN-IDENT-POLICY"
+multi-sub-sap
+no shutdown
+exit
+static-host ip <L4> create
+sla-profile "SLA-KTV-OPTICAL-RECEIVERS"
+sub-profile "SP-KTV-OPTICAL-RECEIVERS"
+subscriber "<L5>"
+no shutdown
+exit
+exit
+exit
+ping router 100 <L4>

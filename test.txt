@@ -1,0 +1,7 @@
+<SR_SCRIPT>
+<SHOW_MENU>
+<L1>какой влан?
+<RUN>
+enable
+enable
+sh vlan id <L1>
